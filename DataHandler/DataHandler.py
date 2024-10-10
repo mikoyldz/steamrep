@@ -39,7 +39,9 @@ class DataHandler():
         lower_bound = reviews_per_game.quantile(0.25)
         filtered_games = reviews_per_game[(reviews_per_game >= lower_bound)].index
         df_filtered = df[df['app_id'].isin(filtered_games)]
-        df_filtered['cleaned_review'] = df_filtered['review'].apply(lambda x: re.sub(r'<.*?>', '', x) if isinstance(x, str) else '')
+        df_filtered['cleaned_review'] = df_filtered['review'].apply(
+            lambda x: re.sub(r'\s+', ' ', re.sub(r'\[.*?\]', '', x)).strip() if isinstance(x, str) else ''
+        )
         df_filtered['cleaned_review'] = df_filtered['cleaned_review'].str.lower()
 
         return df_filtered

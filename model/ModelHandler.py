@@ -4,7 +4,7 @@ from tqdm import tqdm
 from torch.utils.data import DataLoader, TensorDataset
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
-class BertHandler:
+class Bert_Trainer_Evaluator():
     def __init__(self, train_df, val_df, review_columns, batch_size=16, max_length=512, learning_rate=2e-5):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         print(f"Using device: {self.device}")
