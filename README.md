@@ -31,7 +31,6 @@ The `DataHandler` class manages all operations related to the raw review data. I
 - Selecting the dataset size for training/testing.
 
 To use it, import the class:
-
     ```python
     from DataHandler.DataHandler import DataHandler
     ```
@@ -43,7 +42,6 @@ The `ModelPreparator` class handles the steps necessary to prepare the data for 
 - Preparing data for input into the BERT model.
 
 To use it, import the class:
-
     ```python
     from DataHandler.ModelPreparator import ModelPreparator
     ```
@@ -52,7 +50,6 @@ To use it, import the class:
 The `Bert_Trainer_Evaluator` class is responsible for training and evaluating the BERT model. It simplifies the process by combining training and evaluation into a single `.train` method, ensuring an efficient workflow.
 
 To use it, import the class:
-
     ```python
     from model.ModelHandler import Bert_Trainer_Evaluator
     ```
