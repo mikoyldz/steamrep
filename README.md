@@ -1,64 +1,92 @@
-# Steam Review Sentiment Analysis Project
+# Steam Reviews Analysis
 
-### Authors: Markus Grau, Daniel Kosma, Mikail Yildiz
+HIER KOMMT NOCH TEXT AUS DER PRÄSI ZUSAMMENGEFASST
 
-## Overview
-This project focuses on analyzing user reviews from the Steam platform to classify them as positive or negative using Natural Language Processing (NLP) techniques. The classification is based on the content of the written reviews, employing modern machine learning models like BERT (transformer) or classical machine learning approaches (such as Random Forest, or Logistic Regresion,...) for sentiment analysis.
+## Projektstruktur
 
-## How to Run the Project
+hier kommt noch text aus der PRÄSI
 
-### Prerequisites
-Ensure you have the following installed:
-- Python 3.8 or higher
-- Pip package manager
+## Dateien und Ordner
 
-### Setup Instructions
-1. Clone the repository to your local machine.
-2. Navigate to the project directory.
-3. Install the required packages by running:
-    ```bash
-    pip install -r requirements.txt
-    ```
+### Notebooks
 
-4. Find and open the `solution_wrapper_notebook.ipynb` which contains all the necessary steps to run the project and combine the functionalities of each module.
+- **0_Data_Preparation.ipynb**:
 
-## Module Descriptions
+  - **Zweck**: Datenvorbereitung
+  - **Inhalt**:
+    - Laden der Rohdaten aus `data/source_data/`
+    - Bereinigung und Filterung der Daten
+    - Speicherung der verarbeiteten Daten in `data/processed_data/`
+- **0_First_EDA.ipynb**:
 
-### DataHandler Module
-The `DataHandler` class manages all operations related to the raw review data. It includes methods for:
-- Reading and loading the dataset,
-- Preprocessing text data (e.g., cleaning, tokenization),
-- Selecting the dataset size for training/testing.
+  - **Zweck**: Erste explorative Datenanalyse (EDA)
+  - **Inhalt**:
+    - Untersuchung der Verteilung der Bewertungen
+    - Analyse der häufigsten Wörter und Phrasen
+    - Visualisierung der Daten
+- **1_Emotion_Model.ipynb**:
 
-To use it, import the class:
-```python
-from DataHandler.DataHandler import DataHandler
-```
+  - **Zweck**: Modellierung und Analyse von Emotionen
+  - **Inhalt**:
+    - Verwendung von vortrainierten Modellen zur Emotionserkennung
+    - Anwendung des Modells auf die gefilterten Daten
+    - Speicherung der Ergebnisse in `data/emotions_results/`
+- **1_Sarcasm_Models.ipynb**:
 
-### ModelPreparator Module
-The `ModelPreparator` class handles the steps necessary to prepare the data for model training. It includes functionality such as:
-- Generating emotion-based features (if applicable),
-- Splitting the dataset into training and validation sets,
-- Preparing data for input into the BERT model.
+  - **Zweck**: Modellierung und Analyse von Sarkasmus
+  - **Inhalt**:
+    - Verwendung verschiedener Modelle zur Sarkasmuserkennung (z.B. T5, Helinivan, SDCR)
+    - Anwendung der Modelle auf die gefilterten Daten
+    - Speicherung der Ergebnisse in `data/sarcasm_results/`
+- **2_DistilBERT_Model.ipynb**:
 
-To use it, import the class:
-```python
-    from DataHandler.ModelPreparator import ModelPreparator
-```
+  - **Zweck**: Verwendung des DistilBERT-Modells für die Analyse
+  - **Inhalt**:
+    - Feinabstimmung des DistilBERT-Modells auf die Steam Reviews
+    - Bewertung der Modellleistung
+    - Anwendung des Modells auf die gefilterten Daten
+    - Experimente mit verschiedenen Datengrundlagen
+    - Speicherung der Ergebnisse in `data/sentiment_results/`
+    - Speicherung des Modells für zukünftige Verwendung unter `models/`
 
-### ModelHandler Module
-The `Bert_Trainer_Evaluator` class is responsible for training and evaluating the BERT model. It simplifies the process by combining training and evaluation into a single `.train` method, ensuring an efficient workflow.
+### Datenordner
 
-To use it, import the class:
-```python
-    from model.ModelHandler import Bert_Trainer_Evaluator
-```
+- **data/emotions_results/**: Enthält die Ergebnisse der Emotionsanalyse.
 
-## Running the Project
-1. Install the dependencies as mentioned above.
-2. Load the dataset into the appropriate location (if applicable).
-3. Open and run the `solution_wrapper_notebook.ipynb`, which will guide you through the entire process, from data handling to model evaluation.
+  - `steam_reviews_filtered_emotions.parquet`: Parquet-Datei mit den gefilterten Emotionsergebnissen.
+- **data/processed_data/**: Enthält die verarbeiteten Daten.
 
-## Conclusion
-This project provides an intuitive pipeline for classifying Steam reviews as positive or negative, leveraging state-of-the-art NLP techniques with BERT. Each module is designed to handle specific aspects of the pipeline, from data handling to model evaluation, making it easy to extend or modify for future improvements.
+  - `steam_reviews_filtered.parquet`: Parquet-Datei mit den gefilterten Steam Reviews.
+- **data/sarcasm_results/**: Enthält die Ergebnisse der Sarkasmusanalyse.
 
+  - `sarcasm_predictions_t5.parquet`: Parquet-Datei mit den Sarkasmusvorhersagen des T5-Modells.
+  - `sarcasm_scores_helinivan.parquet`: Parquet-Datei mit den Sarkasmusscores des Helinivan-Modells.
+  - `sarcasm_scores_sdcr.parquet`: Parquet-Datei mit den Sarkasmusscores des SDCR-Modells.
+- **data/source_data/**: Enthält die Rohdaten.
+
+  - `game_info.parquet`: Parquet-Datei mit Informationen zu den Spielen. (API Daten)
+  - `steam_reviews_2020.parquet`: Parquet-Datei mit Steam Reviews aus dem Jahr 2020. (Gesäuberte Daten)
+  - `steam_reviews.parquet`: Parquet-Datei mit allen Steam Reviews. (Orginaldaten aus Kaggle)
+
+## Anforderungen
+
+- CUDA-fähige GPU (optional)
+- Python 3.x
+- PyTorch
+- Transformers
+- Pandas
+- Scikit-learn
+- Matplotlib
+- Seaborn
+
+## Nutzung
+
+1. Die Notebooks sind in der Reihenfolge ihrer Nummerierung auszuführen, beginnend mit `0_First_EDA.ipynb` und endend mit `2_DistilBERT_Model.ipynb`.
+2. Dabei ist die Reihenfolge der Notebooks wichtig, da die Ergebnisse der Nummerierungen hierarchisch aufeinander aufbauen, wenn es um die Datenverarbeitung, -analyse und modellierung geht.
+3. Die Ergebnisse werden in den entsprechenden Ordnern im `data`-Verzeichnis gespeichert.
+4. Modelle werden im `models`-Verzeichnis gespeichert.
+5. Die Ergebnisse können dann in den Notebooks oder externen Tools weiter analysiert und visualisiert werden.
+
+## Autoren
+
+- Markus Grau, Daniel Kosma, Mikail Yildiz
