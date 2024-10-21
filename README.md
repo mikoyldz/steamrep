@@ -70,8 +70,8 @@ hier kommt noch text aus der PRÄSI
 
 ## Anforderungen
 
-- CUDA-fähige GPU (optional)
-- Python 3.x
+- CUDA-fähige GPU (optional - Die Version muss hier bei Bedarf angepasst werden!)
+- Python 3.x (Das Projekt wurde mit Python 3.11.8 erstellt - diese Version ist empfohlen.)
 - PyTorch
 - Transformers
 - Pandas
@@ -79,9 +79,11 @@ hier kommt noch text aus der PRÄSI
 - Matplotlib
 - Seaborn
 
+Alle benötigten libraries können mit `pip install -r requirements.txt` installiert werden. 
+
 ## Nutzung
 
-1. Die Notebooks sind in der Reihenfolge ihrer Nummerierung auszuführen, beginnend mit `0_First_EDA.ipynb` und endend mit `2_DistilBERT_Model.ipynb`.
+1. Die Notebooks sind in der Reihenfolge ihrer Nummerierung auszuführen, beginnend mit `00_First_EDA.ipynb` und endend mit `20_DistilBERT_Model.ipynb` für die Transformer bzw. `21_Supervised_Models.ipynb` für die Supervised Methoden.
 2. Dabei ist die Reihenfolge der Notebooks wichtig, da die Ergebnisse der Nummerierungen hierarchisch aufeinander aufbauen, wenn es um die Datenverarbeitung, -analyse und modellierung geht.
 3. Die Ergebnisse werden in den entsprechenden Ordnern im `data`-Verzeichnis gespeichert.
 4. Modelle werden im `models`-Verzeichnis gespeichert.
